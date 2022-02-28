@@ -1,14 +1,16 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { MdShoppingBasket } from 'react-icons/md';
+import React from "react";
+import { Link } from "react-router-dom";
+import { MdShoppingBasket } from "react-icons/md";
 
-import logo from '../../assets/images/logo.svg';
-import { Container, Cart } from './styles';
-import { useCart } from '../../hooks/useCart';
+import logo from "../../assets/images/logo.svg";
+import { Container, Cart } from "./styles";
+import { useCart } from "../../hooks/useCart";
 
 const Header = (): JSX.Element => {
-  // const { cart } = useCart();
-  // const cartSize = // TODO;
+  // Get Cart Context
+  const { cart } = useCart();
+  // Count the amount of different items in cart
+  const cartSize = cart.reduce((acc) => (acc += 1), 0);
 
   return (
     <Container>
@@ -20,7 +22,8 @@ const Header = (): JSX.Element => {
         <div>
           <strong>Meu carrinho</strong>
           <span data-testid="cart-size">
-            {/* {cartSize === 1 ? `${cartSize} item` : `${cartSize} itens`} */}
+            {/* Print out number of items in cart to the Header singular and multiple items */}
+            {cartSize === 1 ? `${cartSize} item` : `${cartSize} itens`}
           </span>
         </div>
         <MdShoppingBasket size={36} color="#FFF" />
